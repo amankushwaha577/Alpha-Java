@@ -54,3 +54,13 @@ public class _2_AbstractMethodsDemo {
         System.out.println("Number of wheels: " + v.wheels());
     }
 }
+
+/*
+🧠 WHAT YOU LEARNED ABOUT ABSTRACT METHODS
+-------------------------------------------
+1. Abstract methods = method declaration without body
+2. You can use any access modifier except 🚫 private
+3. Abstract methods cannot be ⚡ static or 🔒 final
+4. The first non-abstract subclass 🧩 must implement all of them
+*/
+
