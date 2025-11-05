@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Alpha-Java.iml" filepath="$PROJECT_DIR$/.idea/Alpha-Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_100. Basics/_4. DataTypesMethods/Primitive/Primitive.iml" filepath="$PROJECT_DIR$/_100. Basics/_4. DataTypesMethods/Primitive/Primitive.iml" />
       <module fileurl="file://$PROJECT_DIR$/_100. Basics/_1. Data Types/_1. Data Types.iml" filepath="$PROJECT_DIR$/_100. Basics/_1. Data Types/_1. Data Types.iml" />
       <module fileurl="file://$PROJECT_DIR$/_101. OOPS/_1. Encapsulation/_1. Encapsulation.iml" filepath="$PROJECT_DIR$/_101. OOPS/_1. Encapsulation/_1. Encapsulation.iml" />
       <module fileurl="file://$PROJECT_DIR$/_102. Collection N Generic/_1. Generic/_1. Generic.iml" filepath="$PROJECT_DIR$/_102. Collection N Generic/_1. Generic/_1. Generic.iml" />
@@ -19,6 +20,7 @@
       <module fileurl="file://$PROJECT_DIR$/_100. Basics/_3. Control Flow/_3. Control Flow.iml" filepath="$PROJECT_DIR$/_100. Basics/_3. Control Flow/_3. Control Flow.iml" />
       <module fileurl="file://$PROJECT_DIR$/_102. Collection N Generic/_3. HashSet vs LinkedHashSet vs TreeSet/_3. HashSet vs LinkedHashSet vs TreeSet.iml" filepath="$PROJECT_DIR$/_102. Collection N Generic/_3. HashSet vs LinkedHashSet vs TreeSet/_3. HashSet vs LinkedHashSet vs TreeSet.iml" />
       <module fileurl="file://$PROJECT_DIR$/_101. OOPS/_3. Polymorphism/_3. Polymorphism.iml" filepath="$PROJECT_DIR$/_101. OOPS/_3. Polymorphism/_3. Polymorphism.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_100. Basics/_4. DataTypesMethods/_4. DataTypesMethods.iml" filepath="$PROJECT_DIR$/_100. Basics/_4. DataTypesMethods/_4. DataTypesMethods.iml" />
       <module fileurl="file://$PROJECT_DIR$/_102. Collection N Generic/_4. HashMap vs LinkedHashMap vs TreeMap/_4. HashMap vs LinkedHashMap vs TreeMap.iml" filepath="$PROJECT_DIR$/_102. Collection N Generic/_4. HashMap vs LinkedHashMap vs TreeMap/_4. HashMap vs LinkedHashMap vs TreeMap.iml" />
       <module fileurl="file://$PROJECT_DIR$/_101. OOPS/_4. Inheritance/_4. Inheritance.iml" filepath="$PROJECT_DIR$/_101. OOPS/_4. Inheritance/_4. Inheritance.iml" />
       <module fileurl="file://$PROJECT_DIR$/_102. Collection N Generic/_5. ArrayList vs LinkedList/_5. ArrayList vs LinkedList.iml" filepath="$PROJECT_DIR$/_102. Collection N Generic/_5. ArrayList vs LinkedList/_5. ArrayList vs LinkedList.iml" />
