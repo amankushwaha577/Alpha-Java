@@ -11,7 +11,7 @@ If you try to use a local variable before assigning a value,
 the Java compiler throws:  "variable <name> might not have been initialized".
 */
 
-public class LocalVariableInitializationDemo {
+public class _4_LocalVariableInitializationDemo {
 
     // 🔹 Class (static) variable — gets default value automatically
     static int classLevelVar;  // default → 0

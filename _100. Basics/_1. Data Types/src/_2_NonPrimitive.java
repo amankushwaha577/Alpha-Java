@@ -19,7 +19,7 @@ They are **stored in the heap** and can have methods or properties.
 | Interface   | Runnable r = ...;                | Contract defining behavior (implemented by classes) |
 */
 
-public class NonPrimitive {
+public class _2_NonPrimitive {
     public static void main(String[] args) {
 
         // 🔹 1️⃣ String Type

@@ -1,6 +1,6 @@
 // 📘 DataTypesDemo.java
 // A simple demo showing all primitive data types in Java
-public class Primitive {
+public class _1_Primitive {
 
     public static void main(String[] args) {
 

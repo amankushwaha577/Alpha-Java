@@ -17,7 +17,7 @@ they must be explicitly initialized before use.
 | String, Array, Object    | String s = "Aman";     | null           | Reference   |
 */
 
-public class Defaultvalues {
+public class _3_Defaultvalues {
     // 🔹 Class-level variables (to show default values)
     static byte b;
     static short s;
