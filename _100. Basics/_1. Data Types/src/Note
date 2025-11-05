@@ -1,0 +1,25 @@
+/*
+🧩 1️⃣ What Are Data Types?
+---------------------------------------------------
+Data types tell Java what kind of value a variable can hold —
+whether it’s a number, text, true/false, or object.
+
+Java has two main kinds:
+
+1️⃣ Primitive Data Types → Built-in types (fast, stored in stack)
+2️⃣ Non-Primitive (Reference) Types → Objects, arrays, strings, etc.
+
+
+⚙️ 2️⃣ Primitive Data Types
+---------------------------------------------------
+| Type     | Size    | Example                              | Description                        |
+|-----------|---------|--------------------------------------|------------------------------------|
+| byte      | 1 byte  | byte b = 100;                        | Small integers (-128 to 127)       |
+| short     | 2 bytes | short s = 32000;                     | Medium-sized integers              |
+| int       | 4 bytes | int age = 25;                        | Common integer type                |
+| long      | 8 bytes | long population = 7800000000L;       | Large integers (note L)            |
+| float     | 4 bytes | float price = 12.5f;                 | Decimal numbers (note f)           |
+| double    | 8 bytes | double pi = 3.14159;                 | More precise decimal               |
+| char      | 2 bytes | char grade = 'A';                    | Single character                   |
+| boolean   | 1 bit   | boolean isActive = true;             | True or false                      |
+*/
