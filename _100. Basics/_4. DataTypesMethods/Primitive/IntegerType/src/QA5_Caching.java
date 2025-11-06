@@ -99,42 +99,66 @@ public class QA5_Caching {
     }
 }
 
-
 // =====================================================
 // 🧩 7️⃣ equals() vs '==' — VERY IMPORTANT INTERVIEW NOTE
 // =====================================================
         /*
            ⚖️ Difference between '==' and equals() in Java
-
+           ------------------------------------------------
            🔹 '==' → Reference comparison (memory address)
-               - Checks whether both references point to the *same object*.
-               - Works for both primitives and objects, but behaves differently:
+               • For primitives → compares actual values.
+               • For objects → compares memory references (same object in memory?).
 
-                 ➤ For primitives → compares actual value.
-                      int a = 5, b = 5;
-                      System.out.println(a == b); // true ✅
+                 int a = 5, b = 5;
+                 System.out.println(a == b); // ✅ true  (primitive values compared)
 
-                 ➤ For objects (like Integer, String, etc.) → compares references.
-                      Integer x = 128, y = 128;
-                      System.out.println(x == y); // false ❌ (different objects) || outside cache
-                      System.out.println(x.equals(y)); // true ✅ (same numeric value)
+                 Integer x = 128, y = 128;
+                 System.out.println(x == y); // ❌ false (different Integer objects)
+                 System.out.println(x.equals(y)); // ✅ true (numeric values equal)
 
-           🔹 equals() → Value comparison (content)
-               - Defined in Object class and overridden in wrappers, Strings, etc.
-               - Compares internal *data* rather than memory reference.
+           🔹 equals() → Content (value) comparison
+               • Overridden in wrapper & String classes.
+               • Compares actual stored data, not object reference.
+               • Safer for wrapper comparison.
 
-           💡 Wrapper Caching makes '==' tricky:
-              Integer/Long/Short cache values from [-128, 127].
-              So within that range:
-                 Integer a = 127, b = 127;
-                 System.out.println(a == b);     // true ✅ (same cached reference)
-              But outside range:
-                 Integer c = 128, d = 128;
-                 System.out.println(c == d);     // false ❌ (new objects)
-              Use equals() ALWAYS for numeric comparison of wrappers.
+                 Integer a = 100, b = 100;
+                 System.out.println(a.equals(b)); // ✅ true
 
-           💬 Interview talk-track:
-              "In Java, '==' checks if two references point to the same object,
-               while equals() checks if two objects have the same content.
-               For primitives, '==' compares values directly; for objects, use equals()."
+           🔹 Wrapper caching makes '==' confusing:
+               • Integer, Long, Short cache values [-128..127].
+               • Byte caches full range.
+               • So inside range → '==' might return true.
+               • Outside cache → different objects → '==' false.
+               • Always prefer equals() for comparison.
+
+           ⚠️ Cross-type equals() → Always false (type check included!)
+               Integer I = 1000;
+               Long    L = 1000L;
+               System.out.println(I.equals(L)); // ❌ false
+               // Even though numerically same, types differ (Integer ≠ Long).
+               // equals() checks both value *and* class type.
+
+           ⚔️ Cross-type '==' → Compilation error (incompatible types!)
+               Integer I2 = 1000;
+               Long    L2 = 1000L;
+               System.out.println(I2 == L2); // ❌ ERROR: incomparable types: Integer and Long
+               // You cannot directly compare two different wrapper classes using '=='.
+               // To compare their numeric values:
+               System.out.println(I2.intValue() == L2.longValue()); // ✅ true (both primitives)
+
+           🧠 Quick Summary:
+               • '==' → compares *references* for objects, *values* for primitives.
+               • equals() → compares *contents/values* for both.
+               • Cross-type (Integer vs Long):
+                     → equals() → false (different types)
+                     → '==' → compile error unless manually unboxed.
+               • Best practice → Always use equals() (or compare()) for object comparison.
+
+           💬 Interview quote-style answer:
+               "In Java, '==' checks whether two references point to the same object in memory,
+                while equals() checks whether their contents are the same.
+                For primitives, '==' compares values directly;
+                for wrapper classes, always use equals() to avoid caching or type pitfalls.
+                Cross-type wrappers (like Integer vs Long) never match —
+                equals() returns false, and '==' doesn’t even compile."
         */
