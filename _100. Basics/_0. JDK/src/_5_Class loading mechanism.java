@@ -1,167 +1,110 @@
 // File: _4_ClassLoadingMechanism.java
-// Topic: Class Loading Mechanism in JVM — Loading, Linking, Initialization
-// 🧠 Explains how JVM loads .class files into memory before execution.
+// Topic: JVM Class Loading Mechanism (Simple Notes)
+// 🧠 How Java loads classes before running your program
 
 /**
  * ============================================================
  * 🧠 What is Class Loading?
  * ============================================================
- * The **Class Loading Mechanism** is the process by which the JVM
- * loads `.class` files (bytecode) into memory so that they can be executed.
+ * ➤ When you run a Java program, the JVM needs to bring your
+ *    `.class` files into memory before it can execute them.
  *
- * 📘 Flow:
- *    Source Code (.java) → Compiled (.class) → JVM loads into memory → Executes
+ * 👉 In simple words:
+ *     Java file (.java) → Compiled (.class) → Loaded by JVM → Runs
  *
- * Every Java class must be **loaded**, **linked**, and **initialized**
- * before it can be used.
+ * Each class goes through 3 steps:
+ *     1️⃣ Loading
+ *     2️⃣ Linking
+ *     3️⃣ Initialization
  *
  * ============================================================
- * 🔹 1️⃣ Phases of Class Loading
+ * 🔹 1️⃣ Loading
  * ============================================================
- * The class loading process has 3 main steps:
- *
- *   1️⃣ Loading
- *   2️⃣ Linking
- *   3️⃣ Initialization
- *
- * ------------------------------------------------------------
- * 1️⃣ LOADING
- * ------------------------------------------------------------
- * • The `.class` file (bytecode) is read by the JVM’s **ClassLoader**.
- * • It brings the class definition into memory.
- * • Creates an object of type `Class` in the **Method Area**.
- *
- * 🔹 Example:
- *     ClassLoader loads “Student.class” when we first use:
- *         new Student();
- *
- * ------------------------------------------------------------
- * 2️⃣ LINKING
- * ------------------------------------------------------------
- * • The JVM verifies and prepares the loaded class before execution.
- *
- * 🔸 Sub-steps of Linking:
- *    1. Verification — Ensures bytecode is safe & valid.
- *    2. Preparation  — Allocates memory for static fields, sets defaults.
- *    3. Resolution   — Converts symbolic references → direct memory addresses.
+ * • JVM uses a **ClassLoader** to find and load `.class` files.
+ * • It reads bytecode and stores class info inside **Method Area**.
  *
  * Example:
- *     int count = 5;  // during preparation, memory allocated with default 0
+ *     new Student();
+ *     → Loads “Student.class” into memory if not already loaded.
  *
- * ------------------------------------------------------------
- * 3️⃣ INITIALIZATION
- * ------------------------------------------------------------
- * • Executes all static blocks and assigns final values to static variables.
- * • Runs in top-down order, following class hierarchy.
+ * ============================================================
+ * 🔹 2️⃣ Linking
+ * ============================================================
+ * • JVM prepares the class before use.
+ *
+ * Steps:
+ *   1. Verification → checks for bytecode safety.
+ *   2. Preparation  → memory given for static fields (default values).
+ *   3. Resolution   → converts names into memory addresses.
  *
  * Example:
- *     static int x = 10;
- *     static { System.out.println("Class initialized"); }
- *
- * When the class is first used → initialization happens.
+ *     static int x = 5;  // during preparation → memory reserved with value 0
  *
  * ============================================================
- * 🔹 2️⃣ ClassLoader Hierarchy
+ * 🔹 3️⃣ Initialization
  * ============================================================
- * JVM uses **three main ClassLoaders** in a parent-child hierarchy:
- *
- *   1️⃣ Bootstrap ClassLoader
- *        → Loads core Java classes (java.lang.*, java.util.*, etc.)
- *        → Implemented in native code (C/C++).
- *
- *   2️⃣ Extension (Platform) ClassLoader
- *        → Loads classes from `ext` or `jre/lib/ext` directory.
- *
- *   3️⃣ Application (System) ClassLoader
- *        → Loads user-defined classes from the classpath.
- *
- * 📘 Hierarchy (Parent Delegation Model):
- *
- *     ApplicationClassLoader
- *           ↑
- *     ExtensionClassLoader
- *           ↑
- *     BootstrapClassLoader
- *
- * 💡 Delegation Process:
- *     When ApplicationClassLoader is asked to load a class:
- *       → It first asks its parent (ExtensionLoader)
- *       → Which asks Bootstrap
- *       → If not found anywhere, it loads it itself.
- *
- * ✅ This prevents multiple copies of the same core class being loaded.
- *
- * ============================================================
- * 🔹 3️⃣ Custom ClassLoader
- * ============================================================
- * • You can create your own ClassLoader by extending `ClassLoader`.
- * • Useful for:
- *      - Loading classes from network or encrypted files.
- *      - Plugin architectures (e.g., Tomcat, Spring Boot).
+ * • Static variables are assigned real values.
+ * • Static blocks are executed.
  *
  * Example:
- *     class MyLoader extends ClassLoader {
- *         @Override
- *         public Class<?> findClass(String name) {
- *             // custom logic to read bytes and define class
- *             return defineClass(name, byteCode, 0, byteCode.length);
- *         }
- *     }
+ *     static int a = 10;
+ *     static { System.out.println("Class initialized!"); }
  *
  * ============================================================
- * 🔹 4️⃣ When Class is Loaded (Triggered Events)
+ * 🔹 4️⃣ ClassLoader Hierarchy (Parent Delegation Model)
  * ============================================================
- * A class is loaded by JVM when:
- *   • You create an object with `new`
- *   • You access a static field or method
- *   • You call `Class.forName("MyClass")`
- *   • You load it manually via a custom ClassLoader
+ * JVM uses 3 main loaders in a chain:
+ *
+ *     ApplicationClassLoader (loads user code)
+ *            ↑
+ *     ExtensionClassLoader  (loads ext libs)
+ *            ↑
+ *     BootstrapClassLoader  (loads core Java libs)
+ *
+ * 💡 Rule: Each loader asks its parent first before loading the class.
+ * ✅ Avoids loading same class multiple times.
  *
  * ============================================================
- * 🔹 5️⃣ Unloading Classes
+ * 🔹 5️⃣ When Does Class Load?
  * ============================================================
- * • The JVM unloads classes when:
- *      → The ClassLoader that loaded them becomes unreachable.
- * • Usually happens only in custom or dynamic class loading scenarios.
- *
- * ⚠️ Classes loaded by the system classloader (like main classes)
- *     stay in memory until JVM shutdown.
+ * ✅ When you:
+ *   • Create an object using `new`
+ *   • Access a static variable/method
+ *   • Call `Class.forName("MyClass")`
  *
  * ============================================================
- * 🔹 6️⃣ Diagram — Class Loading Lifecycle
+ * 🔹 6️⃣ Unloading Classes
  * ============================================================
- *
- *        ┌─────────────────────────────┐
- *        │      Class Loading          │
- *        │  (via ClassLoader)          │
- *        └─────────────┬───────────────┘
- *                      ↓
- *        ┌─────────────────────────────┐
- *        │        Linking              │
- *        │ Verify → Prepare → Resolve  │
- *        └─────────────┬───────────────┘
- *                      ↓
- *        ┌─────────────────────────────┐
- *        │      Initialization         │
- *        │ (Static blocks, vars init)  │
- *        └─────────────┬───────────────┘
- *                      ↓
- *        ┌─────────────────────────────┐
- *        │         Execution           │
- *        │ (Objects, Methods, GC etc.) │
- *        └─────────────────────────────┘
+ * • JVM unloads a class only when its ClassLoader is no longer reachable.
+ * • Usually happens in frameworks like Tomcat that use custom loaders.
  *
  * ============================================================
- * 🔹 7️⃣ Quick Interview Summary
+ * 🔹 7️⃣ Diagram — Easy Flow
  * ============================================================
- * ✅ ClassLoader loads .class files into JVM memory.
- * ✅ Phases → Loading → Linking → Initialization.
- * ✅ ClassLoader types → Bootstrap, Extension, Application.
- * ✅ Delegation model ensures no duplicate core classes.
- * ✅ finalize() no longer used — rely on GC & AutoCloseable.
+ *
+ *   ┌───────────────────────────────┐
+ *   │  Disk (.class file)           │
+ *   └────────────┬──────────────────┘
+ *                ↓
+ *        [ClassLoader loads it]
+ *                ↓
+ *   ┌───────────────────────────────┐
+ *   │  Method Area (Class info)     │
+ *   ├───────────────────────────────┤
+ *   │  Linking + Initialization     │
+ *   ├───────────────────────────────┤
+ *   │  Execution (Heap + Stack)     │
+ *   └───────────────────────────────┘
+ *
+ * ============================================================
+ * 🔹 8️⃣ Quick Recap
+ * ============================================================
+ * ✅ Loading → ClassLoader reads .class file.
+ * ✅ Linking → Verifies + prepares + resolves.
+ * ✅ Initialization → Runs static blocks, assigns values.
+ * ✅ ClassLoaders → Bootstrap → Extension → Application.
  *
  * 💬 One-liner:
- *   “JVM loads classes lazily through ClassLoaders, verifies and links them,
- *    then initializes static members before execution — ensuring safety,
- *    reusability, and memory efficiency.”
+ * “JVM loads, links, and initializes classes using ClassLoaders
+ *  before executing them safely and efficiently.”
  */
