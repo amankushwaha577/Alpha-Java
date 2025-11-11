@@ -140,7 +140,7 @@ public class _3_ShortAndWrapperNotes {
         // 🔧 Need bit helpers (bitCount/leadingZeros/trailingZeros) for short?
         //   → Short doesn’t have them; use int view:
         //      int ui16 = s & 0xFFFF;
-        //      Integer.bitCount(ui16), Integer.numberOfLeadingZeros(ui16)-16,
+        //      Integer.toBinaryString(), Integer.bitCount(ui16), Integer.numberOfLeadingZeros(ui16)-16,
         //      Integer.numberOfTrailingZeros(ui16), Integer.highestOneBit(ui16).
     }
 }

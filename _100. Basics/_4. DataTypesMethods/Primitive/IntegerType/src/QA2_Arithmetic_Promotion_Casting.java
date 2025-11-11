@@ -35,7 +35,7 @@ public class QA2_Arithmetic_Promotion_Casting {
         // 🧩 2️⃣ The Correct Way — Explicit Casting ✅
         // ------------------------------------------------------------
         byte a3 = (byte) (a1 + a2); // ✅ forcefully narrow int → byte
-        System.out.println("✅ Explicit cast result: " + a3); // -> 30
+        System.out.println("✅ Explicit cast result (byte): " + a3); // -> 30
         /*
          💡 Explanation:
          (a1 + a2) = 30 as int
@@ -43,10 +43,10 @@ public class QA2_Arithmetic_Promotion_Casting {
          */
 
         // ------------------------------------------------------------
-        // 🧩 3️⃣ Compile-Time Constant Shortcut 🪄
+        // 🧩 3️⃣ Compile-Time Constant Shortcut 🪄 (byte)
         // ------------------------------------------------------------
         byte b = 10 + 20; // ✅ allowed without cast
-        System.out.println("✅ Constant expression result: " + b); // -> 30
+        System.out.println("✅ Constant expression result (byte): " + b); // -> 30
 
         /*
          🧠 Why allowed:
@@ -55,22 +55,22 @@ public class QA2_Arithmetic_Promotion_Casting {
          then checks if 30 fits inside byte range (-128..127). ✅ It fits, so allowed.
 
          ⚠️ If the result didn’t fit, it would fail even here:
-             byte b2 = 100 + 100;  // ❌ 200 is out of range for byte
-         */
+             // byte b2 = 100 + 100;  // ❌ 200 is out of range for byte
+        */
 
         // ------------------------------------------------------------
-        // 🧩 4️⃣ Practical Demo — Overflow Case
+        // 🧩 4️⃣ Practical Demo — Overflow Case (byte)
         // ------------------------------------------------------------
         byte b3 = (byte) (127 + 1);
-        System.out.println("⚙️ Overflow result: " + b3); // -> -128
+        System.out.println("⚙️ Overflow result (byte): " + b3); // -> -128
 
         /*
          💡 (127 + 1) = 128 as int → (byte)128 = -128 (wrap-around using 2’s complement)
          This demonstrates overflow when narrowing large int → small byte.
-         */
+        */
 
         // ------------------------------------------------------------
-        // 🧩 5️⃣ Quick Visual Representation 🧮
+        // 🧩 5️⃣ Quick Visual Representation 🧮 (byte)
         // ------------------------------------------------------------
         /*
          Imagine memory layout (simplified):
@@ -91,22 +91,57 @@ public class QA2_Arithmetic_Promotion_Casting {
               (byte)(130) = -126  → because 130 - 256 = -126
         */
 
-        // ------------------------------------------------------------
-        // 🧩 6️⃣ Quick Summary 🧾
-        // ------------------------------------------------------------
+        // ============================================================
+        // 🧩 6️⃣ Quick Summary (applies to byte/short/char) 🧾
+        // ============================================================
         /*
          ✅ Java promotes smaller numeric types (byte, short, char) to int before any arithmetic.
          ✅ The result of such arithmetic is always int unless operands are long/double/float.
-         ✅ You must use explicit cast to assign int → byte or int → short.
+         ✅ You must use explicit cast to assign int → byte or int → short (or char).
          ✅ Constant expressions (like 10 + 20) are computed at compile-time and allowed if in range.
          ✅ Overflow happens silently (wraps around using 2’s complement).
         */
 
-        System.out.println("\n🎯 Summary:");
-        System.out.println("byte a3 = a1 + a2;   ❌ Error — int result cannot fit into byte");
-        System.out.println("byte a3 = (byte)(a1 + a2); ✅ Works fine");
+        System.out.println("\n🎯 Summary (byte):");
+        System.out.println("byte a3 = a1 + a2;   ❌ Error — int result cannot fit into byte without cast");
+        System.out.println("byte a3 = (byte)(a1 + a2); ✅ Works");
         System.out.println("byte b = 10 + 20; ✅ Compile-time constant allowed");
         System.out.println("(byte)(127 + 1) = -128 (overflow wrap-around)");
+
+        // ============================================================
+        // 🧩 7️⃣ EXACT SAME RULES FOR short ✅
+        // ============================================================
+        // 7A) Compile-time error without cast (if we try):
+        short s1 = 1000;
+        short s2 = 2000;
+        // short s3 = s1 + s2;     // ❌ Compilation Error: int → short (narrowing)
+        short s3 = (short) (s1 + s2); // ✅ Explicit cast
+        System.out.println("\n✅ Explicit cast result (short): " + s3); // -> 3000
+
+        // 7B) Compile-time constant within range → allowed without cast
+        short sConst = 1000 + 2000; // ✅ 3000 fits in short (-32768..32767)
+        System.out.println("✅ Constant expression result (short): " + sConst); // -> 3000
+
+        // 7C) Constant out of range → compile-time error (uncomment to see)
+        // short sBad = 30000 + 30000; // ❌ 60000 doesn't fit in short
+
+        // 7D) Overflow example for short
+        short sOverflow = (short) (32767 + 1); // 32767 is Short.MAX_VALUE
+        System.out.println("⚙️ Overflow result (short): " + sOverflow); // -> -32768
+
+        /*
+         🧠 Recap for short:
+         - s1 + s2 becomes int (promotion), so assignment to short needs an explicit cast.
+         - Constant expressions are folded at compile-time and checked against short’s range.
+         - Overflow wraps around (two’s complement), e.g., 32767 + 1 → -32768 after narrowing.
+        */
+
+        System.out.println("\n🎯 Summary (short):");
+        System.out.println("short s3 = s1 + s2;   ❌ Error — int result cannot fit into short without cast");
+        System.out.println("short s3 = (short)(s1 + s2); ✅ Works");
+        System.out.println("short sConst = 1000 + 2000; ✅ Compile-time constant allowed");
+        System.out.println("(short)(32767 + 1) = -32768 (overflow wrap-around)");
+
         System.out.println("\n🔥 Interview Tip: Always mention Java’s 'binary numeric promotion' rule!");
     }
 }
