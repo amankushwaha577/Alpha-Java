@@ -126,7 +126,7 @@ public class _1_StringBasics {
         // 🧩 6️⃣ intern() — Beginner Overview
         // =====================================================
         /*
-           ✔ intern() moves string to SCP if not present
+           ✔ intern() moves string to SCP from HEAP if not present
            ✔ returns the SCP reference
 
            📌 Why useful?
