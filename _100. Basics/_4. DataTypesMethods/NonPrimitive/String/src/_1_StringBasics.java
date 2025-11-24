@@ -86,17 +86,17 @@ public class _1_StringBasics {
         */
 
         String str = "  Aman Kushwaha  ";
-        System.out.println(str.trim());         // "Aman Kushwaha"
         System.out.println(str.length());       // 16 (because of spaces)
         System.out.println(str.charAt(2));      // 'A' (3rd character)
-        System.out.println(str.contains("Aman"));// true
-
 
         // ⭐ substring examples
         System.out.println("Java".substring(1));     // "ava"
-        System.out.println("Java".substring(1, 3));  // "av"
+        System.out.println("Java".substring(1, 3));           // "av"
         // Explanation:
         // substring(1,3) → characters at index 1 and 2 (3 excluded)
+
+        System.out.println(str.trim());            // "Aman Kushwaha"
+        System.out.println(str.contains("Aman"));  // true
 
 
         // =====================================================
