@@ -4,25 +4,26 @@
 
 public class _B_StringPool_Concat_Intern {
     public static void main(String[] args) {
-
         // =====================================================
-        // 🧩 1️⃣ SCP Deep Rules
+        // 🧩 1️⃣ SCP (String Constant Pool) Deep Rules
         // =====================================================
         /*
            ✅ SCP stores:
               1) String literals
               2) Strings returned by intern()
 
-           ✅ Same literal text → SAME object reused
-           ✅ new String() → ALWAYS new heap object
+           ✅ SCP stores ONLY literals + interned strings.
+           ✅ If literal already exists → SAME reference reused.
+           ✅ Heap strings are NOT in SCP unless intern() called.
         */
 
-        String a1 = "Hello";
-        String a2 = "Hello";
-        System.out.println(a1 == a2); // true (same SCP object)
+        String a1 = "Hello";          // SCP
+        String a2 = "Hello";          // same SCP
+        System.out.println(a1 == a2); // true
 
-        String a3 = new String("Hello");
-        System.out.println(a1 == a3); // false (heap vs SCP)
+        String a3 = new String("Hello");        // heap
+        System.out.println(a1 == a3);          // false
+        System.out.println(a1 == a3.intern()); // true (heap moved/linked to SCP)
 
 
         // =====================================================
