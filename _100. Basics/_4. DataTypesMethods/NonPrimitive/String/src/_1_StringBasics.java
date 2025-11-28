@@ -155,6 +155,45 @@ public class _1_StringBasics {
         String z = null;
         System.out.println(z + "A");  // nullA
 
+        // =====================================================
+        // 🧩 1️⃣5️⃣ '+' Operator Trap (LEFT → RIGHT)
+        // =====================================================
+        /*
+           Expression is evaluated left-to-right:
+
+           10 + 20 + "Java" → 30Java
+           "Java" + 10 + 20 → Java1020
+        */
+        System.out.println(10 + 20 + "Java");  // 30Java
+        System.out.println("Java" + 10 + 20);  // Java1020
+
+
+
+        // =====================================================
+        // 🧩 1️⃣6️⃣ Null Handling Traps
+        // =====================================================
+        /*
+           null + "X" → "nullX"
+           null.method() → NullPointerException
+        */
+        String n = null;
+        System.out.println(n + "X"); // nullX
+        // n.length();               // ❌ NPE
+
+
+
+        // =====================================================
+        // 🧩 1️⃣7️⃣ Loop Concatenation Performance Trap
+        // =====================================================
+        /*
+           String is IMMUTABLE → every + makes NEW String → O(n²)
+           Use StringBuilder for loops.
+        */
+
+        String slow = "";
+        for (int k = 0; k < 3; k++) slow += k;  // inefficient
+        System.out.println(slow);               // 012
+
 
         // =====================================================
         // 🧠 Quick Revision (Beginner)
