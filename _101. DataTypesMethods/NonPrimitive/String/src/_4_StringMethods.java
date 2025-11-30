@@ -4,44 +4,42 @@
 public class _4_StringMethods {
 
     public static void main(String[] args) {
-
         // =====================================================
         // 1) LENGTH / ACCESS METHODS
         // =====================================================
 
         // ➤ (1) length()
-        // Meaning: Used to count how many characters are present in a String.
-        // Syntax:
-        //     int len = string.length();
+        // Meaning: Returns the total number of characters in the String.
+        // Syntax: int len = string.length();
         //
         // Example:
-        String name = "Aman";
-        System.out.println(name.length());
-        // Output:
-        // 4
+                String name = "Aman";
+                System.out.println(name.length());
+        // Output: 4
 
 
         // ➤ (2) charAt(index)
-        // Meaning: Returns the character present at the given index (index starts from 0).
-        // Syntax:
-        //     char c = string.charAt(index);
+        // Meaning: Returns the character at the given index (0-based).
+        // Rule: 0 <= index < string.length()
+        // If index is invalid → Runtime Exception ❌ -> StringIndexOutOfBoundsException
+        // Syntax: char c = string.charAt(index);
         //
         // Example:
-        System.out.println(name.charAt(2));
-        // Output:
-        // a
+                System.out.println(name.charAt(1));
+        // Output: m
+
+        // ❌ name.charAt(-1) → StringIndexOutOfBoundsException
+        // ❌ name.charAt(100) → StringIndexOutOfBoundsException
 
 
         // ➤ (3) toCharArray()
-        // Meaning: Converts the string into an array of characters.
-        // Syntax:
-        //     char[] arr = string.toCharArray();
+        // Meaning: Converts String into a character array.
+        // Syntax: char[] arr = string.toCharArray();
         //
         // Example:
-        char[] cArr = name.toCharArray();
-        System.out.println(cArr[1]);
-        // Output:
-        // m
+                char[] cArr = name.toCharArray();
+                System.out.println(cArr[1]);
+        // Output: m
 
 
 
@@ -50,27 +48,32 @@ public class _4_StringMethods {
         // =====================================================
 
         // ➤ (4) substring(startIndex)
-        // Meaning: Returns the substring from the given index till the end.
-        // Syntax:
-        //     string.substring(startIndex);
+        // Meaning: Returns substring from startIndex to end of String.
+        // Rule: startIndex must be valid (0 to length)
+        // Syntax: string.substring(startIndex);
         //
         // Example:
-        String text = "ABCDEFG";
-        System.out.println(text.substring(3));
-        // Output:
-        // DEFG
+                String text = "ABCDEFG";
+                System.out.println(text.substring(3));
+        // Output: DEFG
+
+        // ❌ text.substring(-1) → StringIndexOutOfBoundsException
+        // ❌ text.substring(100) → StringIndexOutOfBoundsException
 
 
         // ➤ (5) substring(startIndex, endIndex)
-        // Meaning: Returns substring from startIndex (inclusive) to endIndex (exclusive).
-        // Syntax:
-        //     string.substring(startIndex, endIndex);
+        // Meaning: Returns substring from start (inclusive) to end (exclusive).
+        // Golden Rule:
+        // 0 <= startIndex <= endIndex <= string.length()
+        // Syntax: string.substring(startIndex, endIndex);
         //
         // Example:
-        System.out.println(text.substring(1, 4));
-        // Output:
-        // BCD
+                System.out.println(text.substring(1, 4));
+        // Output: BCD
 
+        // ✅ text.substring(4,4) → "" (empty string)
+        // ❌ text.substring(5,2) → StringIndexOutOfBoundsException
+        // ❌ text.substring(2,100) → StringIndexOutOfBoundsException
 
 
         // =====================================================
