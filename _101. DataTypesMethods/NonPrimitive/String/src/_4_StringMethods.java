@@ -397,6 +397,29 @@ public class _4_StringMethods {
         // Output:
         // Name: Aman, Age: 25
 
+        // =====================================================
+        // ➤ (30.B) printf(formatPattern, values...)
+        // Meaning: Used for formatted OUTPUT directly on console.
+        // It both formats AND prints in one step.
+        // Syntax:
+        //     System.out.printf(pattern, values...);
+        //
+        // Example:
+                System.out.printf("Name: %s, Age: %d", "Aman", 25);
+        // Output:
+        // Name: Aman, Age: 25
+
+        // ✅ Key Difference from String.format():
+        // ➤ printf() prints directly to the console.
+        // ➤ No need to use System.out.println() separately.
+        // ➤ Does NOT add a new line automatically.
+
+        // ✅ New Line with printf():
+        // Use %n for moving to next line.
+        // Example:
+        // System.out.printf("Hello%nWorld");
+
+
 
         // ➤ (30) repeat(count) (Java 11+)
         // Meaning: Repeats the string 'count' number of times.
