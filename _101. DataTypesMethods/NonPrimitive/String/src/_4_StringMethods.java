@@ -281,6 +281,7 @@ public class _4_StringMethods {
         // Example:
         String data = "A,B,C";
         String[] parts = data.split(",");
+        System.out.println(parts);
         System.out.println(parts[1]);
         // Output:
         // B
